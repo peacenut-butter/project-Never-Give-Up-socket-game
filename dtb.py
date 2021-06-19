@@ -57,6 +57,7 @@ def view_user_rank(acc):#xem 3 rank quanh user
             rank = int(row[0])
             data = row[0]+'*'+row[1]+'*'+row[2]
             break
+    cursor.execute('select * from ranking')
     if rank == 1:
         flag = 0
         for row in cursor:
@@ -68,7 +69,7 @@ def view_user_rank(acc):#xem 3 rank quanh user
                 c = row[0]+'*'+row[1]+'*'+row[2]
                 if flag == 0: flag = 1
                 else: break
-        return data + '*' + b + '*' + c
+        return str(data) + '*' + str(b) + '*' + str(c)
     else:
         flag = 0
         for row in cursor:
@@ -80,7 +81,7 @@ def view_user_rank(acc):#xem 3 rank quanh user
                 c = row[0]+'*'+row[1]+'*'+row[2]
                 if flag == 0: flag = 1
                 else: break
-        return a + '*' + data + '*' + c   
+        return str(a) + '*' + str(data) + '*' + str(c)   
 
 #region #cập nhật điểm vào rank
 def add_rank(acc, score):
@@ -125,5 +126,3 @@ def update_rank():
 
 def close_dtb(): #đóng database
     conn.close()
-
-add_rank('e','5')
