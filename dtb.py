@@ -112,7 +112,7 @@ def update_rank():
         data[i]=list(data[i])
     for i in range(0, len(data)):
         for j in range(i+1, len(data)):
-            if int(data[i][2]) < int(data[j][2]):
+            if int(data[i][2]) <= int(data[j][2]):
                 t=data[i]
                 data[i] = data[j]
                 data[j] = t
