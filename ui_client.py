@@ -276,10 +276,11 @@ def update_quest_score(add_score_i, question_num_i, question_i, hint_i):
 
 def update_last_quest(add_score_i):
     global score, label_score
-    if add_score_i == 1: 
+    if int(add_score_i) == 1: 
         score = score + get_score_now()
         label_score.config(text=score)
         label_score.pack()
+    time.sleep(1)
 
 def show_hint():
     global hint

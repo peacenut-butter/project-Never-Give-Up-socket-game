@@ -7,17 +7,19 @@ host = '127.0.0.1'
 port = 9090
 sk_clt.update_host_port(host, port)
 
+sk_clt.connect_to_server()
+
 ui_clt.frame_start.pack()
 
 ui_clt.bt_start.config(command = lambda : bt_start_click())
 def bt_start_click():
-    sk_clt.connect_to_server()
+    
     ui_clt.frame_start.forget()
     ui_clt.frame_login.pack()
 
 def check_not_null(a, b):
     if a=='' or b=='': 
-        messagebox.showinfo("(ﾉ´･ω･)ﾉ ﾐ ┻━┻", "Không được bỏ trống!!")
+        messagebox.showinfo("(ﾉ´･ω･)ﾉ ﾐ ┻━┻", "Không được bỏ trống USERNAME, PASSWORD!!")
         return 0
     return 1
 
@@ -60,7 +62,7 @@ def first_question():
     
 ui_clt.btw_enter.config(command = lambda : btw_enter_click())
 def btw_enter_click():
-    #global add_score, question_num, question
+    global add_score, question_num, question
     answerword = ui_clt.get_answerword()
     answerword = 'answer ' + answerword
     sk_clt.sent_msg(answerword)
@@ -89,7 +91,7 @@ def bt_play_again_click():
 ui_clt.bt_exit.config(command = lambda : bt_exit_click())
 def bt_exit_click():
     sk_clt.sent_msg('exit')
-    sk_clt.ClientSocket.close()
+    #sk_clt.ClientSocket.close()
     ui_clt.frame_end_game.pack_forget()
     ui_clt.frame_start.pack()
 

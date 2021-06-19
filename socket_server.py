@@ -74,8 +74,8 @@ def threaded_client(connection):
                 (data_sent, last_answer) = data_for_play(question_num, '*', last_answer)
                 connection.send(data_sent.encode())
             elif data[0] == 'exit':
-                connection.close()
-                break
+                question_num = 1
+    connection.close()            
 
 def start_server():
     global ServerSocket, host, port, ThreadCount
