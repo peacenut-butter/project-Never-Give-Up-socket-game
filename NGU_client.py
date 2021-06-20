@@ -13,9 +13,19 @@ ui_clt.frame_start.pack()
 
 ui_clt.bt_start.config(command = lambda : bt_start_click())
 def bt_start_click():
-    
     ui_clt.frame_start.forget()
     ui_clt.frame_login.pack()
+
+ui_clt.bt_chart.config(command = lambda : bt_chart_click())
+def bt_chart_click():
+    msg = 'getchart'
+    sk_clt.sent_msg(msg)
+    data = sk_clt.received_msg()
+    ui_clt.show_ranking.delete('1.0', END)
+    ui_clt.show_ranking.insert('end',ui_clt.text_ranking(data) , 'tag-center')
+    ui_clt.show_ranking.bind("<Key>", lambda e: "break")
+    ui_clt.frame_start.forget()
+    ui_clt.frame_start_ranking.pack()
 
 def check_not_null(a, b):
     if a=='' or b=='': 

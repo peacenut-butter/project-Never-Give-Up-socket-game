@@ -124,5 +124,13 @@ def update_rank():
     conn.commit()
 #endregion              
 
+def get_char(): # lấy toàn bộ bảng xếp hạng
+    global cursor
+    data = 'getchart '
+    cursor.execute('select * from ranking')
+    for row in cursor:
+        data = data + row[0]+'*'+row[1]+'*'+row[2]+'*'
+    return data
+
 def close_dtb(): #đóng database
     conn.close()

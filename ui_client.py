@@ -29,40 +29,119 @@ pt_start = PhotoImage(file="icon//start.gif")
 bt_start = tk.Button(frame_start, relief='flat',background='#000000',image=pt_start)
 bt_start.pack(side = TOP)
 
-#region # hướng dẫn chơi
-frame_start_guide = Frame(window, bg = '#000000', width = 420, height= 540)
-frame_start_guide1= Frame(frame_start_guide, bg = '#000000', width = 420, height= 40)
-pt_back = PhotoImage(file="icon//back.gif")
-bt_back = tk.Button(frame_start_guide1, relief='flat',background='#000000',image=pt_back, command = lambda: bt_back_click())
-def bt_back_click():
-    frame_start_guide.pack_forget()
+#region # bảng xếp hạng
+frame_start_ranking = Frame(window, bg = '#000000', width = 420, height= 540)
+frame_start_ranking1= Frame(frame_start_ranking, bg = '#000000', width = 420, height= 40)
+pt_ranking_back = PhotoImage(file="icon//back.gif")
+bt_ranking_back = tk.Button(frame_start_ranking1, relief='flat',background='#000000',image=pt_ranking_back, command = lambda: bt_ranking_back_click())
+def bt_ranking_back_click():
+    frame_start_ranking.pack_forget()
     frame_start.pack()
-bt_back.pack(side = LEFT)
-frame_start_guide1.propagate(0)
-frame_start_guide1.pack(side = TOP)
-show_guide_title = Message(frame_start_guide, bg = '#000000', fg = '#ffffff', text = 'Hướng Dẫn Chơi :)', font = "Calibri 25 bold", width = 360, justify = CENTER)
-show_guide_title.pack(side = TOP)
-text_guide = """Hướng dẫn gì đó ở đây :) 000000000
-0
-0
-0
-0
-0
-0
-0"""
-show_guide = Message(frame_start_guide, bg = '#000000', text = text_guide, font = "Calibri 17 bold", fg = '#ffffff', width = 360, justify = LEFT)
-show_guide.pack(side = TOP)
-frame_start_guide.propagate(0)
-frame_start_guide.pack()
-frame_start_guide.pack_forget()
+bt_ranking_back.pack(side = LEFT)
+frame_start_ranking1.propagate(0)
+frame_start_ranking1.pack(side = TOP)
+
+show_ranking_title = Message(frame_start_ranking, bg = '#000000', fg = '#ffffff', text = 'Bảng xếp hạng ╰(*°▽°*)╯', font = "Calibri 25 bold", width = 360, justify = CENTER)
+show_ranking_title.pack(side = TOP)
+
+frame_start_ranking2= Frame(frame_start_ranking, bg = '#000000', width = 420, height= 350)
+def text_ranking(all_rank_text):
+    text = '(rank | name | score)\n'
+    data = all_rank_text
+    data = data.replace('*',' ')
+    data = data.split()
+    i = 0
+    for x in data:
+        if i%3==0: text = text + '> #' + x + '    '
+        elif i%3==1: text = text + x + '    '
+        elif i%3==2: text = text + x + ' <\n'
+        i += 1
+    text = text[:len(text)-1] #xoá kí tự xuống dòng cuối cùng
+    return text
+
+
+show_ranking = tk.Text(frame_start_ranking2,relief='flat', bg = '#000000', font = "Calibri 17 bold", fg = '#ffffff', width = 360, cursor="arrow")
+show_ranking.tag_configure('tag-center', justify='center')
+show_ranking.pack(side = TOP)
+frame_start_ranking2.propagate(0)
+frame_start_ranking2.pack(side = TOP)
+
+frame_start_ranking.propagate(0)
+frame_start_ranking.pack()
+frame_start_ranking.pack_forget()
+
+pt_chart = PhotoImage(file="icon//topuser.gif")
+bt_chart = tk.Button(frame_start, image=pt_chart, relief='flat',background='#000000')
+bt_chart.pack(side = TOP)
 #endregion
 
-pt_guide = PhotoImage(file="icon//guide.gif")
-bt_guide = tk.Button(frame_start, image=pt_guide, relief='flat',background='#000000', command = lambda: bt_guide_click())
-bt_guide.pack(side = TOP)
-def bt_guide_click():
+#region # thông tin chơi
+frame_start_info = Frame(window, bg = '#000000', width = 420, height= 540)
+frame_start_info1= Frame(frame_start_info, bg = '#000000', width = 420, height= 40)
+pt_info_back = PhotoImage(file="icon//back.gif")
+bt_info_back = tk.Button(frame_start_info1, relief='flat',background='#000000',image=pt_info_back, command = lambda: bt_info_back_click())
+def bt_info_back_click():
+    frame_start_info.pack_forget()
+    frame_start.pack()
+bt_info_back.pack(side = LEFT)
+frame_start_info1.propagate(0)
+frame_start_info1.pack(side = TOP)
+show_info_title = Message(frame_start_info, bg = '#000000', fg = '#ffffff', text = 'Insta Idol :)', font = "Calibri 25 bold", width = 360, justify = CENTER)
+show_info_title.pack(side = TOP)
+text_info = """Thank for your help! :)
+Here's a little gift for you <3
+___thaobarbie
+laylaaa.d
+__thuyb
+_lingchii
+_mayy.01
+_trangthuy
+charming.duong
+delight_hyeon
+deoonii.26
+dg_linh
+djmie95
+elina_4_22
+emitrann
+fearythanyarat
+fengtimo520
+fox.hoang
+grudina_anna_model
+h.viviha
+han_kyung__
+hienanhh_99__
+lizhen.149
+mintny.zll
+mintuyenn
+monbiebs
+nancy.momoland
+qtrang.ng
+superxuan001
+thaohuyen__
+thuytienn.2210
+trang._.thu
+vox.ngoc.traan
+watsamon__
+wyntracyy
+yudayeon1004
+----------------------------------------------
+girlsfromasiatoeurope
+------------------The end :)------------------
+"""
+show_info = tk.Text(frame_start_info,relief='flat', bg = '#000000', font = "Calibri 17 bold", fg = '#ffffff', width = 360, cursor="arrow")
+show_info.insert('end', text_info)
+show_info.pack(side = TOP)
+frame_start_info.propagate(0)
+frame_start_info.pack()
+frame_start_info.pack_forget()
+#endregion
+
+pt_info = PhotoImage(file="icon//info.gif")
+bt_info = tk.Button(frame_start, image=pt_info, relief='flat',background='#000000', command = lambda: bt_info_click())
+bt_info.pack(side = TOP)
+def bt_info_click():
     frame_start.pack_forget()
-    frame_start_guide.pack()
+    frame_start_info.pack()
 
 frame_start.pack(side = TOP)
 frame_start.propagate(0)

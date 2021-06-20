@@ -34,7 +34,10 @@ def threaded_client(connection):
         else:
             data = dataFromClient.decode()
             data = data.split()
-            if data[0] == 'login':
+            if data[0] == 'getchart':
+                data_sent = dtb.get_char()
+                connection.send(data_sent.encode())
+            elif data[0] == 'login':
                 if data[1] == 'signup':
                     if dtb.view_acc(data[2]) == None:
                         dtb.add_acc(data[2], data[3])

@@ -30,7 +30,9 @@ def received_msg():
         else:
             data = data_from_server.decode()
             data = data.split()
-            if data[0] == 'login':
+            if data[0] == 'getchart':
+                return data[1]
+            elif data[0] == 'login':
                 return int(data[1])
             elif data[0] == 'play':
                 add_score = int(data[1])
