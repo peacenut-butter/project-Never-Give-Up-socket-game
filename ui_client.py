@@ -362,7 +362,8 @@ def update_last_quest(add_score_i):
     time.sleep(1)
 
 def show_hint():
-    global hint
+    global hint, score
+    score = score - 313
     messagebox.showinfo("(ﾉ´･ω･)ﾉ ﾐ ┻━┻", hint.replace('*',' '))
 
 def get_answerword():
