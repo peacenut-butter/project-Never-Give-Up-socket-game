@@ -151,6 +151,16 @@ frame_start.pack_forget()
 #region # frame này để đăng nhập
 frame_login = Frame(window, bg = "#000000", width = 420, height= 540)
 
+frame_login1= Frame(frame_login, bg = '#000000', width = 420, height= 40)
+pt_login_back = PhotoImage(file="icon//back.gif")
+bt_login_back = tk.Button(frame_login1, relief='flat',background='#000000',image=pt_login_back, command = lambda: bt_login_back_click())
+def bt_login_back_click():
+    frame_login.pack_forget()
+    frame_start.pack()
+bt_login_back.pack(side = LEFT)
+frame_login1.propagate(0)
+frame_login1.pack(side = TOP)
+
 ic_word_quiz_lg = Image.open("icon//word_quiz.png")
 ic_word_quiz_lg = ic_word_quiz_lg.resize((240,160))
 icon_word_quiz_lg = ImageTk.PhotoImage(ic_word_quiz_lg)
@@ -172,13 +182,47 @@ label_pass_text.place(x=17, y=270)
 entry_pass = tk.Entry(frame_login, show="*", bg="#000000", font = "Helvetica 17 bold", foreground="white", insertbackground="white", bd=0,  width = 16)
 entry_pass.place(x=170, y=270)
 
+label_new_pass_box = tk.Label(frame_login, image = pt_box, bd = 0)
+label_new_pass_box.place(x=100,y=316)
+label_new_pass_text = tk.Label(frame_login, text="NEW PASS:", bg = '#000000', font = "Helvetica 17 bold", foreground="white")
+label_new_pass_text.place(x=31, y=330)
+entry_new_pass = tk.Entry(frame_login, show="*", bg="#000000", font = "Helvetica 17 bold", foreground="white", insertbackground="white", bd=0,  width = 16)
+entry_new_pass.place(x=170, y=330)
+
 pt_sign_up = PhotoImage(file="icon//signup.gif")
 bt_sign_up = tk.Button(frame_login, relief='flat',background='#000000',image=pt_sign_up)
-bt_sign_up.place(x=45, y=350)
+bt_sign_up.place(x=45, y=385)
 
 pt_login = PhotoImage(file="icon//login.gif")
 bt_login = tk.Button(frame_login, relief='flat',background='#000000',image=pt_login)
-bt_login.place(x=225, y=350)
+bt_login.place(x=225, y=385)
+
+pt_call_change_pass = PhotoImage(file="icon//changepass.gif")
+bt_call_change_pass = tk.Button(frame_login, relief='flat',background='#000000',image=pt_call_change_pass)
+bt_call_change_pass.place(x=135, y=460)
+
+pt_change_pass = PhotoImage(file="icon//changepass.gif")
+bt_change_pass = tk.Button(frame_login, relief='flat',background='#000000',image=pt_change_pass)
+bt_change_pass.place(x=135, y=385)
+
+def hide_change_pass(x):
+    if x == 1:
+        label_new_pass_box.place_forget()
+        label_new_pass_text.place_forget()
+        entry_new_pass.place_forget()
+        bt_change_pass.place_forget()
+        bt_sign_up.place(x=45, y=385)
+        bt_login.place(x=225, y=385)
+        bt_call_change_pass.place(x=135, y=460)
+    elif x == 0:
+        label_new_pass_box.place(x=100,y=316)
+        label_new_pass_text.place(x=31, y=330)
+        entry_new_pass.place(x=170, y=330)
+        bt_change_pass.place(x=135, y=385)
+        bt_sign_up.place_forget()
+        bt_login.place_forget()
+        bt_call_change_pass.place_forget()
+hide_change_pass(1)
 
 frame_login.pack(side = TOP)
 frame_login.propagate(0)

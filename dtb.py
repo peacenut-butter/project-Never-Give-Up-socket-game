@@ -21,6 +21,11 @@ def add_acc(acc,pw): #thêm tài khoản
     cursor.execute("insert into account values (?,?)",(acc,pw))
     conn.commit()
 
+def changepass(acc, newpw):
+    global cursor
+    cursor.execute('update account SET PASS=? WHERE ACCOUNT=?', (newpw, acc))
+    conn.commit()
+
 def number_of_quest(): #tinh tong so cau hoi
     global cursor
     cursor.execute('select count(ID_q) from ques_list')

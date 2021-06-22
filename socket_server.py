@@ -1,3 +1,4 @@
+from os import terminal_size
 import socket
 from _thread import *
 from tkinter.constants import NONE
@@ -56,6 +57,15 @@ def threaded_client(connection):
                     else:
                         x='login 0'
                         connection.send(x.encode())
+                elif data[1] == 'changepass':
+                    if dtb.view_acc(data[2]) == data[3]:
+                        user_name = data[2]
+                        x='login 1'
+                        connection.send(x.encode())
+                        dtb.changepass(data[2], data[4])
+                    else:
+                        x='login 0'
+                        connection.send(x.encode())
             elif data[0] == 'answer':
                 if question_num == maxquest:
                     if data[1] == last_answer: check_answer = 1
@@ -94,6 +104,5 @@ def start_server():
         print('Connected to: ' + address[0] + ':' + str(address[1]))
         start_new_thread(threaded_client, (Client, ))
         ThreadCount += 1
-
 
 #ServerSocket.close()

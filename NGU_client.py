@@ -27,9 +27,9 @@ def bt_chart_click():
     ui_clt.frame_start.forget()
     ui_clt.frame_start_ranking.pack()
 
-def check_not_null(a, b):
-    if a=='' or b=='': 
-        messagebox.showinfo("(ﾉ´･ω･)ﾉ ﾐ ┻━┻", "Không được bỏ trống USERNAME, PASSWORD!!")
+def check_not_null(a, b, c):
+    if a=='' or b=='' or c=='': 
+        messagebox.showinfo("(ﾉ´･ω･)ﾉ ﾐ ┻━┻", "Không được bỏ trống các trường!!")
         return 0
     return 1
 
@@ -37,12 +37,14 @@ ui_clt.bt_sign_up.config(command = lambda : bt_signup_click())
 def bt_signup_click():
     get_user = ui_clt.entry_user.get()
     get_pass = ui_clt.entry_pass.get()
-    if check_not_null(get_user,get_pass):
+    if check_not_null(get_user,get_pass,'=))'):
         msg = 'login signup ' + get_user + ' ' + get_pass
         sk_clt.sent_msg(msg)
         a = sk_clt.received_msg()
         if a == 1:
             messagebox.showinfo("(ヘ･_･)ヘ┳━┳", "Đăng kí thành công, mời bạn đăng nhập lại !!")
+            ui_clt.entry_user.delete(0,END)
+            ui_clt.entry_pass.delete(0,END)
         else:
             messagebox.showinfo("(ﾉ´･ω･)ﾉ ﾐ ┻━┻", "Tài khoản đã tồn tại !!")
             ui_clt.entry_user.delete(0,END)
@@ -52,11 +54,13 @@ ui_clt.bt_login.config(command = lambda : bt_login_click())
 def bt_login_click():
     get_user = ui_clt.entry_user.get()
     get_pass = ui_clt.entry_pass.get()
-    if check_not_null(get_user,get_pass):
+    if check_not_null(get_user,get_pass,'=))'):
         msg = 'login login ' + get_user + ' ' + get_pass
         sk_clt.sent_msg(msg)
         a = sk_clt.received_msg()
         if a == 1:
+            ui_clt.entry_user.delete(0,END)
+            ui_clt.entry_pass.delete(0,END)
             ui_clt.frame_login.forget()
             ui_clt.frame_play.pack()
             first_question()
@@ -64,6 +68,31 @@ def bt_login_click():
             messagebox.showinfo("(ﾉ´･ω･)ﾉ ﾐ ┻━┻", "Sai tài khoản hoặc mật khẩu rồi!!")
             ui_clt.entry_user.delete(0,END)
             ui_clt.entry_pass.delete(0,END)
+
+ui_clt.bt_call_change_pass.config(command = lambda : bt_call_change_pass_click())
+def bt_call_change_pass_click():
+    ui_clt.hide_change_pass(0)
+
+ui_clt.bt_change_pass.config(command = lambda : bt_change_pass_click())
+def bt_change_pass_click():
+    get_user = ui_clt.entry_user.get()
+    get_pass = ui_clt.entry_pass.get()
+    get_newpass = ui_clt.entry_new_pass.get()
+    if check_not_null(get_user,get_pass,get_newpass):
+        msg = 'login changepass ' + get_user + ' ' + get_pass + ' ' + get_newpass
+        sk_clt.sent_msg(msg)
+        a = sk_clt.received_msg()
+        if a == 1:
+            messagebox.showinfo("(ヘ･_･)ヘ┳━┳", "Đổi mật khẩu thành công, mời bạn đăng nhập lại !!")
+            ui_clt.hide_change_pass(1)
+            ui_clt.entry_user.delete(0,END)
+            ui_clt.entry_pass.delete(0,END)
+            ui_clt.entry_new_pass.delete(0,END)
+        elif a == 0:
+            messagebox.showinfo("(ﾉ´･ω･)ﾉ ﾐ ┻━┻", "Sai tài khoản hoặc mật khẩu rồi!!")
+            ui_clt.entry_user.delete(0,END)
+            ui_clt.entry_pass.delete(0,END)
+            ui_clt.entry_new_pass.delete(0,END)
 
 def first_question():
     ui_clt.score = 0
