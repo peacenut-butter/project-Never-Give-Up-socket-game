@@ -408,7 +408,11 @@ def update_last_quest(add_score_i):
 def show_hint():
     global hint, score
     score = score - 313
-    messagebox.showinfo("(ﾉ´･ω･)ﾉ ﾐ ┻━┻", hint.replace('*',' '))
+    if score < 0:
+        score = score + 313
+        messagebox.showinfo("(ﾉ´･ω･)ﾉ ﾐ ┻━┻", 'Làm gì còn đủ điểm đâu mà đòi coi gợi ý :)')
+    else:
+        messagebox.showinfo("(ﾉ´･ω･)ﾉ ﾐ ┻━┻", hint.replace('*',' '))
 
 def get_answerword():
     return answerword
