@@ -4,7 +4,7 @@
 
 #### B1: Chạy NGU_server.py rồi chọn start
 
-#### B2: NGU_server.py và chơi thôi =))
+#### B2: NGU_client.py và chơi thôi =))
 
 ### **bấm vào info rồi lăn chuột xuống dưới dể nhận quà =)))**
 
