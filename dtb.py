@@ -3,8 +3,11 @@ from typing import NoReturn
 import sqlite3
 from sqlite3.dbapi2 import Cursor
 #Ket noi den dtb
-conn  = sqlite3.connect('dtb.db', check_same_thread=False)
-cursor = conn.cursor()
+conn = cursor = None
+def connect_dtb():
+    global conn, cursor
+    conn  = sqlite3.connect('dtb.db', check_same_thread=False)
+    cursor = conn.cursor()
 #endregion
 
 def view_acc(acc): #tìm tài khoản
@@ -21,7 +24,7 @@ def add_acc(acc,pw): #thêm tài khoản
     cursor.execute("insert into account values (?,?)",(acc,pw))
     conn.commit()
 
-def changepass(acc, newpw):
+def changepass(acc, newpw): #đổi userpass
     global cursor
     cursor.execute('update account SET PASS=? WHERE ACCOUNT=?', (newpw, acc))
     conn.commit()
@@ -129,13 +132,23 @@ def update_rank():
     conn.commit()
 #endregion              
 
-def get_char(): # lấy toàn bộ bảng xếp hạng
+def get_chart(): # lấy toàn bộ bảng xếp hạng
     global cursor
     data = 'getchart '
     cursor.execute('select * from ranking')
     for row in cursor:
         data = data + row[0]+'*'+row[1]+'*'+row[2]+'*'
     return data
+
+def get_acc_server(): # lấy toàn bộ account cho server hiển thị
+    global cursor
+    cursor.execute('select * from account')
+    return cursor.fetchall()
+
+def get_chart_server(): # lấy toàn bộ bảng xếp hạng cho server hiển thị
+    global cursor
+    cursor.execute('select * from ranking')
+    return cursor.fetchall()
 
 def close_dtb(): #đóng database
     conn.close()

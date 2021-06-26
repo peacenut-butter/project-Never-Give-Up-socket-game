@@ -3,7 +3,9 @@ import socket
 from _thread import *
 from tkinter.constants import NONE
 import dtb
+import time
 
+dtb.connect_dtb()
 ServerSocket = None
 host = None
 port = None
@@ -36,7 +38,7 @@ def threaded_client(connection):
             data = dataFromClient.decode()
             data = data.split()
             if data[0] == 'getchart':
-                data_sent = dtb.get_char()
+                data_sent = dtb.get_chart()
                 connection.send(data_sent.encode())
             elif data[0] == 'login':
                 if data[1] == 'signup':
@@ -52,6 +54,7 @@ def threaded_client(connection):
                         user_name = data[2]
                         x='login 1'
                         connection.send(x.encode())
+                        time.sleep(1)
                         (data_sent, last_answer) = data_for_play(question_num, '*', last_answer)
                         connection.send(data_sent.encode())
                     else:

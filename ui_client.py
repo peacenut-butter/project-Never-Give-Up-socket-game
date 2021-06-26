@@ -60,7 +60,7 @@ def text_ranking(all_rank_text):
     return text
 
 
-show_ranking = tk.Text(frame_start_ranking2,relief='flat', bg = '#000000', font = "Calibri 17 bold", fg = '#ffffff', width = 360, cursor="arrow")
+show_ranking = tk.Text(frame_start_ranking2, relief='flat', bg = '#000000', font = "Calibri 17 bold", fg = '#ffffff', width = 360, cursor="arrow")
 show_ranking.tag_configure('tag-center', justify='center')
 show_ranking.pack(side = TOP)
 frame_start_ranking2.propagate(0)
@@ -410,7 +410,7 @@ def show_hint():
     score = score - 313
     if score < 0:
         score = score + 313
-        messagebox.showinfo("(ﾉ´･ω･)ﾉ ﾐ ┻━┻", 'Làm gì còn đủ điểm đâu mà đòi coi gợi ý :)')
+        messagebox.showinfo("(ﾉ´･ω･)ﾉ ﾐ ┻━┻", 'Làm gì còn đủ điểm đâu mà đòi coi gợi ý :)\nKiếm đủ 313 điểm đi rồi quay lại đây =))')
     else:
         messagebox.showinfo("(ﾉ´･ω･)ﾉ ﾐ ┻━┻", hint.replace('*',' '))
 
@@ -515,8 +515,9 @@ frame_end_game.pack(side = TOP)
 frame_end_game.propagate(0)
 frame_end_game.pack_forget()
 
+user_name = ''
 def start_end_game(data_rank):
-    global rank_a, rank_b, rank_c, rank_name_a, rank_name_b, rank_name_c, rank_score_a, rank_score_b, rank_score_c, user_max_score, user_rank
+    global rank_a, rank_b, rank_c, rank_name_a, rank_name_b, rank_name_c, rank_score_a, rank_score_b, rank_score_c, user_max_score, user_rank, user_name
     frame_play.pack_forget()
     data = data_rank.replace('*',' ')
     data = data.split()
@@ -531,7 +532,6 @@ def start_end_game(data_rank):
     rank_score_c = data[8]
     end_game_ranking_text.config(text = text_rank())
     end_game_ranking_text.pack()
-    user_name = entry_user.get()
     if user_name == rank_name_a:
         user_max_score = rank_score_a
         user_rank = rank_a

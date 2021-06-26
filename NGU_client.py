@@ -59,6 +59,7 @@ def bt_login_click():
         sk_clt.sent_msg(msg)
         a = sk_clt.received_msg()
         if a == 1:
+            ui_clt.user_name = ui_clt.entry_user.get()
             ui_clt.entry_user.delete(0,END)
             ui_clt.entry_pass.delete(0,END)
             ui_clt.frame_login.forget()
