@@ -54,7 +54,7 @@ def threaded_client(connection):
                         user_name = data[2]
                         x='login 1'
                         connection.send(x.encode())
-                        time.sleep(1)
+                        #time.sleep(1)
                         (data_sent, last_answer) = data_for_play(question_num, '*', last_answer)
                         connection.send(data_sent.encode())
                     else:
