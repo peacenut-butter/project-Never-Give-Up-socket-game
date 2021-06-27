@@ -86,9 +86,22 @@ def bt_info_back_click():
 bt_info_back.pack(side = LEFT)
 frame_start_info1.propagate(0)
 frame_start_info1.pack(side = TOP)
-show_info_title = Message(frame_start_info, bg = '#000000', fg = '#ffffff', text = 'Insta Idol :)', font = "Calibri 25 bold", width = 360, justify = CENTER)
+show_info_title = Message(frame_start_info, bg = '#000000', fg = '#ffffff', text = 'Word Quiz', font = "Calibri 27 bold", width = 360, justify = CENTER)
 show_info_title.pack(side = TOP)
-text_info = """Thank for your help! :)
+text_info = """Bạn tìm gì ở đây?
+Bạn muốn tìm hướng dẫn?
+Không có đâu :)
+Mở lên và chơi thôi!
+Chứ có gì đâu mà hướng dẫn :)
+Chơi vui nhé!!
+
+
+
+
+
+
+
+Thank for your help! :)
 Here's a little gift for you <3
 ___thaobarbie
 laylaaa.d
@@ -128,7 +141,7 @@ yudayeon1004
 girlsfromasiatoeurope
 ------------------The end :)------------------
 """
-show_info = tk.Text(frame_start_info,relief='flat', bg = '#000000', font = "Calibri 17 bold", fg = '#ffffff', width = 360, cursor="arrow")
+show_info = tk.Text(frame_start_info,relief='flat', bg = '#000000', font = "Calibri 20 bold", fg = '#ffffff', width = 360, cursor="arrow")
 show_info.insert('end', text_info)
 show_info.pack(side = TOP)
 frame_start_info.propagate(0)

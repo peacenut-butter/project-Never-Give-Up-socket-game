@@ -63,44 +63,88 @@ btnOpenDtb.pack(side=TOP)
 btnMakeQuest = tk.Button(frame_button, text="Make Quest", font=('Roboto Mono', 10, 'bold'), bg= '#000000', fg='#ffffff', width = 10, height= 1)
 btnMakeQuest.pack(side=TOP)
 btnMakeQuest.config(command=lambda: btnMakeQuest_click())
-text_input = text_output = None
+makequest_input = makequest_output = None
 def btnMakeQuest_click():
-    global text_input, text_output
+    global makequest_input, makequest_output
     MakeQuestWindow = Toplevel(window)
     MakeQuestWindow.title('Make Quest')
-    MakeQuestWindow.geometry("402x62")
+    MakeQuestWindow.geometry("470x62")
     MakeQuestWindow.configure(bg='#000000')
     MakeQuestWindow.resizable(0, 0)
-    lb_input = tk.Label(MakeQuestWindow, text='Input', font=('Roboto Mono', 14, 'bold'), bg= '#000000', fg='#ffffff')
-    lb_input.grid(row=0,column=0)
-    text_input = tk.Entry(MakeQuestWindow, font=('Roboto Mono', 14, 'bold'), bg= '#000000', fg='#ffffff', insertbackground='#ffffff', width=20)
-    text_input.grid(row=0,column=1)
-    lb_output = tk.Label(MakeQuestWindow, text='Output', font=('Roboto Mono', 14, 'bold'), bg= '#000000', fg='#ffffff')
-    lb_output.grid(row=1,column=0)
-    text_output = tk.Text(MakeQuestWindow, font=('Roboto Mono', 14, 'bold'), bg= '#000000', fg='#ffffff', insertbackground='#ffffff', width=20, height=1)
-    text_output.config(state='disabled')
-    text_output.grid(row=1,column=1)
-    bt_convert = tk.Button(MakeQuestWindow, text='Convert', font=('Roboto Mono', 14, 'bold'), bg= '#000000', fg='#ffffff', command=lambda: bt_convert_click())
-    bt_convert.place(x=302, y=10)
-def bt_convert_click():
-    global text_input, text_output
-    data = text_input.get()
+    lb_quest_input = tk.Label(MakeQuestWindow, text='Input', font=('Roboto Mono', 14, 'bold'), bg= '#000000', fg='#ffffff')
+    lb_quest_input.grid(row=0,column=0)
+    makequest_input = tk.Entry(MakeQuestWindow, font=('Roboto Mono', 14, 'bold'), bg= '#000000', fg='#ffffff', insertbackground='#ffffff', width=20)
+    makequest_input.grid(row=0,column=1)
+    lb_quest_output = tk.Label(MakeQuestWindow, text='Output', font=('Roboto Mono', 14, 'bold'), bg= '#000000', fg='#ffffff')
+    lb_quest_output.grid(row=1,column=0)
+    makequest_output = tk.Text(MakeQuestWindow, font=('Roboto Mono', 14, 'bold'), bg= '#000000', fg='#ffffff', insertbackground='#ffffff', width=20, height=1)
+    makequest_output.config(state='disabled')
+    makequest_output.grid(row=1,column=1)
+    bt_quest_convert = tk.Button(MakeQuestWindow, text='Convert', font=('Roboto Mono', 14, 'bold'), bg= '#000000', fg='#ffffff', command=lambda: bt_convert_quest_click())
+    bt_quest_convert.place(x=302, y=10)
+    bt_quest_copy = tk.Button(MakeQuestWindow, text='Copy', font=('Roboto Mono', 14, 'bold'), bg= '#000000', fg='#ffffff', command=lambda: bt_copy_quest_click())
+    bt_quest_copy.place(x=402, y=10)
+def bt_convert_quest_click():
+    global makequest_input, makequest_output
+    data = makequest_input.get()
     data = convert_quest(data)
-    text_output.config(state='normal')
-    text_output.delete('1.0', 'end')
-    text_output.insert('end', data)
-    text_output.config(state='disabled')
-    text_output.grid(row=1,column=1)
-
+    makequest_output.config(state='normal')
+    makequest_output.delete('1.0', 'end')
+    makequest_output.insert('end', data)
+    makequest_output.config(state='disabled')
+    makequest_output.grid(row=1,column=1)
 def convert_quest(cv_input):
     x = 16 - len(cv_input)
     cv_output = random_char(x) + cv_input
     cv_output = ''.join(random.sample(cv_output,len(cv_output)))
     cv_output = cv_output.upper()
     return cv_output
-
 def random_char(y):
     return ''.join(random.choice(string.ascii_letters) for x in range(y))
+def bt_copy_quest_click():
+    global makequest_output
+    data = makequest_output.get("1.0", 'end-1c')
+    window.clipboard_clear()
+    window.clipboard_append(data)
+
+btnMakeHint = tk.Button(frame_button, text="Make Hint", font=('Roboto Mono', 10, 'bold'), bg= '#000000', fg='#ffffff', width = 10, height= 1)
+btnMakeHint.pack(side=TOP)
+btnMakeHint.config(command=lambda: btnMakeHint_click())
+makeHint_input = makeHint_output = None
+def btnMakeHint_click():
+    global makeHint_input, makeHint_output
+    MakeHintWindow = Toplevel(window)
+    MakeHintWindow.title('Make Hint')
+    MakeHintWindow.geometry("520x120")
+    MakeHintWindow.configure(bg='#000000')
+    MakeHintWindow.resizable(0, 0)
+    lb_hint_input = tk.Label(MakeHintWindow, text='Input', font=('Roboto Mono', 14, 'bold'), bg= '#000000', fg='#ffffff')
+    lb_hint_input.grid(row=0,column=0)
+    makeHint_input = tk.Entry(MakeHintWindow, font=('Roboto Mono', 14, 'bold'), bg= '#000000', fg='#ffffff', insertbackground='#ffffff', width=40)
+    makeHint_input.grid(row=0,column=1)
+    lb_hint_output = tk.Label(MakeHintWindow, text='Output', font=('Roboto Mono', 14, 'bold'), bg= '#000000', fg='#ffffff')
+    lb_hint_output.grid(row=1,column=0)
+    makeHint_output = tk.Text(MakeHintWindow, font=('Roboto Mono', 14, 'bold'), bg= '#000000', fg='#ffffff', insertbackground='#ffffff', width=40, height=1)
+    makeHint_output.config(state='disabled')
+    makeHint_output.grid(row=1,column=1)
+    bt_hint_convert = tk.Button(MakeHintWindow, text='Convert', font=('Roboto Mono', 14, 'bold'), width=10, bg= '#000000', fg='#ffffff', command=lambda: bt_convert_hint_click())
+    bt_hint_convert.place(x=150, y=70)
+    bt_hint_copy = tk.Button(MakeHintWindow, text='Copy', font=('Roboto Mono', 14, 'bold'), width=10, bg= '#000000', fg='#ffffff', command=lambda: bt_copy_hint_click())
+    bt_hint_copy.place(x=300, y=70)
+def bt_convert_hint_click():
+    global makeHint_input, makeHint_output
+    data = makeHint_input.get()
+    data = data.replace(' ','*')
+    makeHint_output.config(state='normal')
+    makeHint_output.delete('1.0', 'end')
+    makeHint_output.insert('end', data)
+    makeHint_output.config(state='disabled')
+    makeHint_output.grid(row=1,column=1)
+def bt_copy_hint_click():
+    global makeHint_output
+    data = makeHint_output.get("1.0", 'end-1c')
+    window.clipboard_clear()
+    window.clipboard_append(data)
 
 frame_button.propagate(0)
 frame_button.place(x=400,y=0)
